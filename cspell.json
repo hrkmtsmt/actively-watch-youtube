@@ -1,0 +1,4 @@
+{
+  "ignorePaths": ["node_modules/**", "dist/**", "./pnpm-lock.yaml"],
+  "words": ["vite", "vitest", "ntvs", "njsproj", "tada", "corepack", "tseslint"]
+}

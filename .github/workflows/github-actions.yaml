@@ -1,0 +1,60 @@
+name: Actions
+
+run-name: Created by ${{ github.actor }}
+
+on: [push]
+
+jobs:
+  tsc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    if: ${{ github.event.pull_request.draft == false }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          node-version: '18.16.0'
+      - name: Install Packages
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: Type Check
+        run: yarn tsc --noEmit
+
+  eslint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    if: ${{ github.event.pull_request.draft == false }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          node-version: '18.16.0'
+      - name: Install Packages
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: ESLint
+        run: yarn eslint --config eslint.config.js .
+        env:
+          ESLINT_USE_FLAT_CONFIG: true
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    if: ${{ github.event.pull_request.draft == false }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          node-version: '18.16.0'
+      - name: Install Packages
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: Test
+        run: yarn vitest run --config ./vite.config.ts
+
+  cspell:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    if: ${{ github.event.pull_request.draft == false }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          node-version: '18.16.0'
+      - name: Install Packages
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: Spell Check
+        run: yarn cspell "**"
