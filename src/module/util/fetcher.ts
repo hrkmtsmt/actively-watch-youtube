@@ -1,49 +1,78 @@
 import camelcaseKeys from 'camelcase-keys';
 
-class FailedFetchError extends Error {
-  constructor(cause?: unknown) {
+class ExternalSystemError extends Error {
+  private body?: unknown;
+
+  constructor(error?: unknown) {
     super();
-    this.name = 'FAILED_FETCH_ERROR';
-    this.message = 'データ取得に失敗しました';
-    console.error(cause);
+    this.name = 'EXTERNAL_SYSTEM_ERROR';
+    this.message = '外部システムとの連携に失敗しました';
+    this.body = error;
+    console.error(this.body);
   }
 }
 
-const isFailedFetchError = (error: unknown): error is FailedFetchError => {
-  return error instanceof FailedFetchError;
+const isExternalSystemError = (error: unknown): error is ExternalSystemError => {
+  return error instanceof ExternalSystemError;
 };
 
-class SystemError extends Error {
-  constructor(cause?: unknown) {
+class InternalSystemError extends Error {
+  private body?: unknown;
+
+  constructor(error?: unknown) {
     super();
-    this.name = 'SYSTEM_ERROR';
-    this.message = 'システムエラーです';
-    console.error(cause);
+    this.name = 'INTERNAL_SYSTEM_ERROR';
+    this.message = 'システムエラーが発生しました';
+    this.body = error;
+    console.error(this.body);
   }
 }
 
-const isSystemError = (error: unknown): error is SystemError => {
-  return error instanceof SystemError;
+const isInternalSystemError = (error: unknown): error is InternalSystemError => {
+  return error instanceof InternalSystemError;
 };
 
-export type HttpClientError = FailedFetchError | SystemError;
+export type HttpClientError = ExternalSystemError | InternalSystemError;
 
 export const isHttpClientError = (error: unknown): error is HttpClientError => {
-  return isFailedFetchError(error) || isSystemError(error);
+  return isExternalSystemError(error) || isInternalSystemError(error);
+};
+
+export const HTTP_METHODS = {
+  get: 'GET',
+  post: 'POST',
+} as const;
+
+type HttpMethods = (typeof HTTP_METHODS)[keyof typeof HTTP_METHODS];
+
+const createBody = <U>(body?: U) => {
+  if (!body) {
+    return undefined;
+  }
+
+  if (body instanceof FormData) {
+    return body;
+  }
+
+  return JSON.stringify(body);
 };
 
 type Headers = Record<string, string>;
 
-export const fetcher = async <T>(url: string, headers?: Headers): Promise<T> => {
+const fetcher = async <T, U>(url: string, method: HttpMethods, body?: U, headers?: Headers): Promise<T> => {
   try {
     const response = await fetch(url, {
-      method: 'GET',
-      headers,
+      mode: 'cors',
+      method,
+      body: createBody<U>(body),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        ...headers,
+      },
     });
 
     if (response.status === 204) {
-      // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-      return undefined as void as T;
+      return undefined as T;
     }
 
     const data = await response.json();
@@ -52,12 +81,27 @@ export const fetcher = async <T>(url: string, headers?: Headers): Promise<T> => 
       return camelcaseKeys(data as never, { deep: true }) as T;
     }
 
-    throw new FailedFetchError();
+    throw new ExternalSystemError(data);
   } catch (error: unknown) {
-    if (isFailedFetchError(error)) {
+    if (isExternalSystemError(error)) {
       throw error;
     }
 
-    throw new SystemError({ url, error });
+    throw new InternalSystemError({ url, error });
   }
+};
+
+const generateURL = (baseURL: string) => (path: string) => `${baseURL}${path}`;
+
+export const createClient = (baseURL: string, headers?: Headers) => {
+  const toURL = generateURL(baseURL);
+
+  return {
+    get: async <T>(path: string): Promise<T> => {
+      return fetcher(toURL(path), HTTP_METHODS.get, undefined, headers);
+    },
+    post: async <T, U>(path: string, body?: U): Promise<T> => {
+      return fetcher(toURL(path), HTTP_METHODS.post, body, headers);
+    },
+  };
 };

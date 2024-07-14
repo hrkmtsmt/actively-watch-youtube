@@ -2,6 +2,7 @@ import path from 'path';
 import { loadEnv, defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 const srcDir = path.join(__dirname, 'src/');
 const envDir = path.join(__dirname, '.env/');
@@ -11,7 +12,7 @@ export default defineConfig(({ mode }) => {
   return {
     publicDir,
     envDir,
-    plugins: [react(), checker({ typescript: true })],
+    plugins: [react(), checker({ typescript: true }), tsconfigPaths()],
     test: {
       environment: 'jsdom',
       include: ['**/*.{test,spec}.*'],
