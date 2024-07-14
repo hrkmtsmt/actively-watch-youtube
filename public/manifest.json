@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Approve YouTube Channels",
+  "name": "Actively watch YouTube",
   "description": "Not block YouTube channels.",
   "version": "1.0",
   "action": {
