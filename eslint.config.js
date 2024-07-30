@@ -19,7 +19,6 @@ const globalConfig = { languageOptions: { globals: globals.browser } };
 /** @type FlatConfig */
 const eslintConfig = {
   files: ['**/*.ts', '**/*.tsx'],
-  ignores: ['dist/**/*'],
   plugins: {
     functional,
   },
@@ -45,11 +44,11 @@ const eslintConfig = {
         overrides: {
           interface: {
             multiline: { delimiter: 'semi', requireLast: true },
-            singleline: { delimiter: 'semi', requireLast: true },
+            singleline: { delimiter: 'semi', requireLast: false },
           },
           typeLiteral: {
             multiline: { delimiter: 'semi', requireLast: true },
-            singleline: { delimiter: 'semi', requireLast: true },
+            singleline: { delimiter: 'semi', requireLast: false },
           },
         },
       },
@@ -60,7 +59,6 @@ const eslintConfig = {
 /** @type FlatConfig */
 const reactConfig = {
   files: ['**/*.ts', '**/*.tsx'],
-  ignores: ['dist/**/*'],
   settings: {
     react: {
       version: 'detect',
@@ -85,4 +83,4 @@ const reactConfig = {
 };
 
 /** @type Array<FlatConfig> */
-export default [...baseConfig, globalConfig, eslintConfig, reactConfig];
+export default [{ ignores: ['dist/**/*'] }, ...baseConfig, globalConfig, eslintConfig, reactConfig];

@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
+import 'destyle.css';
+import '@styles/global.css';
 
 const container = document.getElementById('app');
 
