@@ -18,7 +18,9 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@module/*": ["./src/module/*"]
+      "@components/*": ["./src/components/*"],
+      "@module/*": ["./src/module/*"],
+      "@styles/*": ["./src/styles/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
