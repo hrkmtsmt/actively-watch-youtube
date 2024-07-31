@@ -1,4 +1,16 @@
 {
   "ignorePaths": ["node_modules/**", "dist/**", "./pnpm-lock.yaml"],
-  "words": ["vite", "vitest", "ntvs", "njsproj", "tada", "corepack", "tseslint", "destyle", "tablist"]
+  "words": [
+    "vite",
+    "vitest",
+    "ntvs",
+    "njsproj",
+    "tada",
+    "corepack",
+    "tseslint",
+    "destyle",
+    "tablist",
+    "zustand",
+    "immer"
+  ]
 }
