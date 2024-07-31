@@ -29,5 +29,8 @@ export default defineConfig(({ mode }) => {
       },
     },
     define: { 'process.env': loadEnv(mode, envDir) },
+    build: {
+      target: ['es2022', 'edge89', 'firefox89', 'chrome89', 'safari15'],
+    },
   };
 });

@@ -13,6 +13,7 @@ export const name = style({
 });
 
 export const input = style({
+  width: '100%',
   border: `solid 1px ${vars.colors['dark-gray']}`,
   borderRadius: vars.layouts.rounded,
   lineHeight: vars.layouts.rems[40],

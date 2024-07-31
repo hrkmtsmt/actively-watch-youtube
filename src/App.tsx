@@ -1,30 +1,15 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Edit3, Save, X, Plus } from 'react-feather';
-import { Card, IconButton, Input, Label, Tab, TabPanel, Tabs, useTabs } from '@components/ui';
+import { Card, Clipboard, IconButton, Input, Label, Tab, TabPanel, Tabs, useTabs } from '@components/ui';
 import { Horizontal } from '@components/layout/Horizontal';
-import { Api, api } from '@module/api';
 import { Main, Vertical } from '@components/layout';
-
-const initialState = { current: '', prev: '', disabled: true };
+import { Api, api } from '@module/api';
+import { useSettingStore } from '@module/storage';
 
 export const App: React.FC = () => {
-  const [value, setValue] = useState(initialState);
+  const { mode, current, change, start, save, cancel } = useSettingStore();
 
-  const handleSave = useCallback(async () => {
-    await chrome.storage.local.set({ apiKey: value.current });
-
-    setValue((state) => ({ current: state.current, prev: state.current, disabled: true }));
-  }, [value]);
-
-  const handleEdit = useCallback(() => {
-    setValue((state) => ({ ...state, disabled: false }));
-  }, []);
-
-  const handleCancel = useCallback(() => {
-    setValue((state) => ({ current: state.prev, prev: state.prev, disabled: true }));
-  }, []);
-
-  const type = useMemo(() => (value.disabled ? 'password' : 'text'), [value.disabled]);
+  const type = useMemo(() => (mode === 'none' ? 'password' : 'text'), [mode]);
 
   const tabs: Tab[] = useMemo(
     () => [
@@ -73,22 +58,23 @@ export const App: React.FC = () => {
       </TabPanel>
       <TabPanel key={tabs[1].id} tabId={tabs[1].id} isSelected={isSelected} tabIndex={tabIndex}>
         <Vertical>
+          <Clipboard label="Origin" value={window.location.origin} />
           <Label label="API Key">
             <Input
               type={type}
-              value={value.current}
-              disabled={value.disabled}
-              onChange={(e) => setValue((state) => ({ ...state, current: e.target.value }))}
+              value={current.apiKey}
+              disabled={mode === 'none'}
+              onChange={(e) => change((state) => ({ ...state, apiKey: e.target.value }))}
             />
           </Label>
-          {value.disabled ? (
+          {mode === 'none' ? (
             <Horizontal>
-              <IconButton icon={(className) => <Edit3 className={className} onClick={handleEdit} />} />
+              <IconButton icon={(className) => <Edit3 className={className} onClick={start} />} />
             </Horizontal>
           ) : (
             <Horizontal>
-              <IconButton icon={(className) => <Save className={className} onClick={handleSave} />} />
-              <IconButton icon={(className) => <X className={className} onClick={handleCancel} />} />
+              <IconButton icon={(className) => <Save className={className} onClick={save} />} />
+              <IconButton icon={(className) => <X className={className} onClick={cancel} />} />
             </Horizontal>
           )}
         </Vertical>
