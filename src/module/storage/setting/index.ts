@@ -6,13 +6,11 @@ interface Setting {
   apiKey: string;
 }
 
-type Updater = (current: Setting) => typeof current;
-
 interface Store {
   mode: 'edit' | 'none';
   current: Setting;
   prev: Setting;
-  change: (updater: Updater) => void;
+  change: (updater: (current: Setting) => typeof current) => void;
   start: () => void;
   save: () => void;
   cancel: () => void;
@@ -33,7 +31,7 @@ export const useSettingStore = create<Store>()((set) => ({
       });
     });
   },
-  change: (updater: Updater) => {
+  change: (updater) => {
     return set((state) => {
       return produce(state, (draftState) => {
         draftState.current = updater(state.current);
