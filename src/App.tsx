@@ -7,11 +7,11 @@ import { TABS } from '@module/constant';
 
 export const App: React.FC = () => {
   const tabs = useMemo(() => toArrayFromMap(TABS), []);
-  const { isSelected, tabIndex, handleClickTab } = useTabs(tabs);
+  const { isSelected, tabIndex, handleClickTab } = useTabs(tabs.values);
 
   return (
     <Main>
-      <Tabs tabs={tabs} isSelected={isSelected} onClick={handleClickTab} />
+      <Tabs tabs={tabs.values} isSelected={isSelected} onClick={handleClickTab} />
       <TabPanel tabId={TABS.favorite.id} isSelected={isSelected} tabIndex={tabIndex}>
         <Favorite />
       </TabPanel>

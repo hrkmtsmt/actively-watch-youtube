@@ -3,7 +3,7 @@ import { produce } from 'immer';
 import { StorageManager } from '../storage-manager';
 import { Api } from '@module/api';
 
-type Channels = Api.YouTube.Channels.GetResponse['items'];
+export type Channels = Api.YouTube.Channels.GetResponse['items'];
 
 interface Store {
   channels: Channels;
@@ -11,11 +11,11 @@ interface Store {
   remove: (channelId: Channels[number]['id']) => Promise<void>;
 }
 
-const storage = new StorageManager<Channels>('channels');
-const savedState = await storage.get();
+const storage = new StorageManager('channels');
+const storageValue = await storage.get();
 
 export const useChannelsStore = create<Store>()((set) => ({
-  channels: savedState ?? [],
+  channels: storageValue ?? [],
   add: async (channelId, channel) => {
     return set((state) => {
       return produce(state, (draftState) => {

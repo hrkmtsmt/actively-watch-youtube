@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { produce } from 'immer';
 import { StorageManager } from '../storage-manager';
 
-interface Setting {
+export interface Setting {
   apiKey: string;
 }
 
@@ -16,14 +16,14 @@ interface Store {
   cancel: () => void;
 }
 
-const storage = new StorageManager<Setting>('setting');
+const storage = new StorageManager('setting');
 const initialState: Setting = { apiKey: '' };
-const savedState = await storage.get();
+const storageValue = await storage.get();
 
 export const useSettingStore = create<Store>()((set) => ({
   mode: 'none',
-  current: savedState ?? initialState,
-  prev: savedState ?? initialState,
+  current: storageValue ?? initialState,
+  prev: storageValue ?? initialState,
   start: () => {
     return set((state) => {
       return produce(state, (draftState) => {
