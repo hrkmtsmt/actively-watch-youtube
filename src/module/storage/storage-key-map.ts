@@ -1,4 +1,4 @@
-const list = ['setting', 'channel-id'] as const;
+const list = ['setting', 'channels'] as const;
 
 if (list.length !== new Set(list).size) {
   throw new Error('Duplicated storage key.');

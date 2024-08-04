@@ -4,8 +4,10 @@ import { vars } from '@styles/global.css';
 export const button = style({
   border: `solid 1px ${vars.colors['dark-gray']}`,
   borderRadius: vars.layouts.rounded,
-  width: vars.layouts.pixels[40],
-  height: vars.layouts.pixels[40],
+  maxWidth: vars.layouts.pixels[40],
+  minWidth: vars.layouts.pixels[40],
+  maxHeight: vars.layouts.pixels[40],
+  minHeight: vars.layouts.pixels[40],
   background: vars.colors['light-gray'],
   display: 'flex',
   justifyContent: 'center',

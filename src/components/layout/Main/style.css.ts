@@ -9,5 +9,5 @@ export const main = style({
   display: 'flex',
   flexDirection: 'column',
   gap: vars.layouts.pixels[32],
-  width: 480,
+  width: 400,
 });
