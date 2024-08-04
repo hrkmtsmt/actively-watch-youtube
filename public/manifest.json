@@ -7,5 +7,12 @@
     "default_popup": "index.html",
     "default_icon": "icon.png"
   },
-  "permissions": ["storage"]
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "runAt": "document_idle",
+      "matches": ["https://example.com/"],
+      "js": ["assets/test.js"]
+    }
+  ]
 }
