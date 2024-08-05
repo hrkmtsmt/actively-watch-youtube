@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"pnpm dev:serve\" \"pnpm test:watch\" \"pnpm lint\" \"pnpm format\"",
+    "ci": "install --frozen-lockfile",
     "test": "vitest run --config ./vite.config.ts",
     "spell-check": "cspell '**'",
     "lint": "eslint --config eslint.config.js .",
@@ -70,5 +71,8 @@
     "vite-tsconfig-paths": "4.3.2",
     "vitest": "2.0.1",
     "wxt": "0.19.1"
+  },
+  "volta": {
+    "node": "20.16.0"
   }
 }
