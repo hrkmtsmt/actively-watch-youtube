@@ -14,12 +14,12 @@ export class StorageManager<T extends StorageKeys> {
   }
 
   public async get() {
-    const data = (await chrome.storage.local.get(this.key)) as Storage<T>;
+    const data = (await browser.storage.local.get(this.key)) as Storage<T>;
 
     return data[this.key];
   }
 
   public async set(value: Storage<T>[typeof this.key]) {
-    await chrome.storage.local.set({ [this.key]: value });
+    await browser.storage.local.set({ [this.key]: value });
   }
 }

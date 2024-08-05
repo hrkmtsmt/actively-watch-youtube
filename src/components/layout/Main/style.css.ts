@@ -1,5 +1,5 @@
-import { vars } from '@styles/global.css';
 import { style } from '@vanilla-extract/css';
+import { vars } from '@styles/global.css';
 
 export const main = style({
   paddingTop: vars.layouts.pixels[32],
