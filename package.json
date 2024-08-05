@@ -1,19 +1,18 @@
 {
-  "name": "actively-watch-youtube",
+  "name": "wxt-react-starter",
+  "description": "manifest.json description",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "concurrently \"pnpm dev:serve\" \"pnpm test:watch\" \"pnpm lint\" \"pnpm format\"",
-    "ci": "pnpm install --immutable --immutable-cache --check-cache",
     "test": "vitest run --config ./vite.config.ts",
     "spell-check": "cspell '**'",
     "lint": "eslint --config eslint.config.js .",
     "format": "prettier --write . --config ./prettier.config.js",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "zip": "tsc && wxt zip",
     "postinstall": "husky install",
-    "dev:serve": "vite --host localhost",
+    "dev:serve": "wxt",
     "dev:no-test": "concurrently \"pnpm dev:serve\"",
     "test:watch": "vitest watch",
     "test:related": "vitest related --run"
@@ -33,8 +32,8 @@
     "camelcase-keys": "9.1.3",
     "destyle.css": "4.0.1",
     "immer": "10.1.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-feather": "2.0.10",
     "zustand": "4.5.4"
   },
@@ -45,12 +44,12 @@
     "@testing-library/react": "14.1.0",
     "@types/chrome": "0.0.268",
     "@types/node": "20.9.0",
-    "@types/react": "18.2.37",
-    "@types/react-dom": "18.2.15",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "6.10.0",
     "@typescript-eslint/parser": "6.11.0",
     "@vanilla-extract/vite-plugin": "4.0.13",
-    "@vitejs/plugin-react": "4.1.1",
+    "@wxt-dev/module-react": "1.1.0",
     "concurrently": "8.2.2",
     "cspell": "8.8.3",
     "eslint": "9.4.0",
@@ -66,14 +65,10 @@
     "lint-staged": "15.2.5",
     "prettier": "3.3.0",
     "ts-node": "10.9.1",
-    "typescript": "5.4.5",
+    "typescript": "5.5.4",
     "typescript-eslint": "7.11.0",
-    "vite": "5.1.0",
-    "vite-plugin-checker": "0.6.2",
-    "vite-tsconfig-paths": "^4.3.2",
-    "vitest": "2.0.1"
-  },
-  "volta": {
-    "node": "20.15.1"
+    "vite-tsconfig-paths": "4.3.2",
+    "vitest": "2.0.1",
+    "wxt": "0.19.1"
   }
 }

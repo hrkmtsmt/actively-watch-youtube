@@ -1,4 +1,5 @@
 {
+  "extends": "./.wxt/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -18,9 +19,10 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["./src/components/*"],
-      "@module/*": ["./src/module/*"],
-      "@styles/*": ["./src/styles/*"]
+      "@components/*": ["src/components/*"],
+      "@module/*": ["src/module/*"],
+      "@styles/*": ["src/styles/*"],
+      "*": [".wxt/types/*.d.ts"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

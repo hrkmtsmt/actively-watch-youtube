@@ -96,7 +96,7 @@ const reactConfig = {
 
 /** @type Array<FlatConfig> */
 export default [
-  { ignores: ['dist/**/*', 'vite.config.ts.timestamp-**.*'] },
+  { ignores: ['dist/**/*', '.output/**/*', '.wxt/**/*', 'vite.config.ts.timestamp-**.*'] },
   ...baseConfig,
   globalConfig,
   eslintConfig,
