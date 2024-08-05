@@ -1,11 +1,16 @@
 /* eslint-disable no-console */
-import { api } from '@module/api';
-import { StorageManager } from '@module/storage';
+(async () => {
+  const { api } = await import('@module/api');
+  const { StorageManager } = await import('@module/storage');
 
-const channelStorage = new StorageManager('channels');
+  const channelStorage = new StorageManager('channels');
 
-const res = await channelStorage.get();
+  (async () => {
+    const res = await channelStorage.get();
+    console.log(res);
 
-const response = res.map((c) => api.youtube.activities.list({ channelId: c.id }));
+    const response = await Promise.all(res.map((c) => api.youtube.activities.list({ channelId: c.id })));
 
-console.log(response);
+    console.log(response);
+  })();
+})();

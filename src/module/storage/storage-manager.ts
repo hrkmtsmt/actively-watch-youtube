@@ -1,4 +1,4 @@
-import { Setting, Channels } from '.'
+import { Setting, Channels } from '.';
 import { storageKeyMap, StorageKeys } from './storage-key-map';
 
 interface Storage<T extends StorageKeys> {

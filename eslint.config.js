@@ -95,4 +95,10 @@ const reactConfig = {
 };
 
 /** @type Array<FlatConfig> */
-export default [{ ignores: ['dist/**/*'] }, ...baseConfig, globalConfig, eslintConfig, reactConfig];
+export default [
+  { ignores: ['dist/**/*', 'vite.config.ts.timestamp-**.*'] },
+  ...baseConfig,
+  globalConfig,
+  eslintConfig,
+  reactConfig,
+];
