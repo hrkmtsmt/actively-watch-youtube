@@ -38,7 +38,7 @@ jobs:
       - name: install packages
         run: pnpm install --frozen-lockfile
       - name: test
-        run: pnpm vitest run --config ./vite.config.ts
+        run: pnpm vitest run --config ./vitest.config.ts
 
   cspell:
     runs-on: ubuntu-latest
