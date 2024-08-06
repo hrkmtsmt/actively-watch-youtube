@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "concurrently \"pnpm dev:serve\" \"pnpm test:watch\" \"pnpm lint\" \"pnpm format\"",
     "ci": "install --frozen-lockfile",
-    "test": "vitest run --config ./vite.config.ts",
+    "test": "vitest run --config ./vitest.config.ts",
     "spell-check": "cspell '**'",
     "lint": "eslint --config eslint.config.js .",
     "format": "prettier --write . --config ./prettier.config.js",
