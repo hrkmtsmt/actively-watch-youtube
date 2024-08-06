@@ -11,6 +11,7 @@
     "destyle",
     "tablist",
     "zustand",
-    "immer"
+    "immer",
+    "unlocalized"
   ]
 }
