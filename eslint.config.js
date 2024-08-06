@@ -6,6 +6,7 @@ import tseslint from 'typescript-eslint';
 import functional from 'eslint-plugin-functional';
 import react from 'eslint-plugin-react';
 import hooks from 'eslint-plugin-react-hooks';
+import autoImports from './.wxt/eslint-auto-imports.mjs';
 
 const baseConfig = tseslint.config(
   eslint.configs.recommended,
@@ -101,4 +102,5 @@ export default [
   globalConfig,
   eslintConfig,
   reactConfig,
+  autoImports,
 ];
