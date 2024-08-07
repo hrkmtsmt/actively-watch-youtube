@@ -8,4 +8,7 @@ export const button = style({
   height: vars.layouts.pixels[40],
   paddingRight: vars.layouts.pixels[8],
   paddingLeft: vars.layouts.pixels[8],
+  ':active': {
+    transform: 'scale(0.96)',
+  },
 });

@@ -1,7 +1,7 @@
 import React, { ComponentProps } from 'react';
 import * as styles from './style.css';
 
-export interface IconButtonProps extends Pick<ComponentProps<'button'>, 'onClick'> {
+export interface IconButtonProps extends Pick<ComponentProps<'button'>, 'onClick' | 'disabled'> {
   icon?: (className: string) => React.ReactNode;
 }
 

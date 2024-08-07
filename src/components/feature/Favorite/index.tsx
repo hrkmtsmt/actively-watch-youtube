@@ -30,9 +30,12 @@ export const Favorite: React.FC = () => {
                 onClick={() => {
                   setIsShowAddField(false);
                   setChannel((channelId) => {
-                    api.youtube.channels.list({ channelIds: [channelId] }).then((response) => {
-                      add(channelId, response.items[0]);
-                    });
+                    api.youtube.channels
+                      .list({ channelIds: [channelId] })
+                      .then((response) => {
+                        add(channelId, response.items[0]);
+                      })
+                      .catch(console.error);
                     return '';
                   });
                 }}
@@ -53,6 +56,7 @@ export const Favorite: React.FC = () => {
         </Horizontal>
       )}
       <IconButton
+        disabled={isShowAddField}
         icon={(className) => (
           <Plus
             className={className}

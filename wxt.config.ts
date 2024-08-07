@@ -5,8 +5,10 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 const envDir = path.join(__dirname, '.env/');
 const srcDir = path.join(__dirname, 'src/');
+const entrypointsDir = path.join(srcDir, 'app/');
+const publicDir = path.join(entrypointsDir, 'public/');
 
-// See https://wxt.dev/api/config.html
+// NOTE: https://wxt.dev/api/config.html
 export default defineConfig({
   vite: () => {
     return {
@@ -16,6 +18,8 @@ export default defineConfig({
     };
   },
   srcDir,
+  entrypointsDir,
+  publicDir,
   modules: ['@wxt-dev/module-react'],
   manifest: {
     permissions: ['storage'],

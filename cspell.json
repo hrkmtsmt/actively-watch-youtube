@@ -12,6 +12,7 @@
     "tablist",
     "zustand",
     "immer",
-    "unlocalized"
+    "unlocalized",
+    "contenteditable"
   ]
 }

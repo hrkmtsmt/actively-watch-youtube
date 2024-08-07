@@ -12,6 +12,13 @@ export const button = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  ':active': {
+    transform: 'scale(0.96)',
+  },
+  ':disabled': {
+    cursor: 'not-allowed',
+    opacity: 0.48,
+  },
 });
 
 export const icon = style({
