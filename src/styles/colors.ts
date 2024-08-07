@@ -3,4 +3,5 @@ export const colors = {
   white: '#fff',
   'dark-gray': '#ccc',
   'light-gray': '#eee',
+  success: '#00c03d',
 } as const;
