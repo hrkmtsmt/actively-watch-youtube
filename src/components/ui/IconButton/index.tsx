@@ -7,7 +7,7 @@ export interface IconButtonProps extends Pick<ComponentProps<'button'>, 'onClick
 
 const Component: React.FC<IconButtonProps> = (props) => {
   return (
-    <button {...props} type="button" className={styles.button}>
+    <button type="button" className={styles.button} disabled={props.disabled} onClick={props.onClick}>
       {props.icon?.(styles.icon)}
     </button>
   );

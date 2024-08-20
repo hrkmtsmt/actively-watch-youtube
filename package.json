@@ -28,6 +28,7 @@
     "*": "pnpm spell-check"
   },
   "dependencies": {
+    "@antfu/utils": "^0.7.10",
     "@vanilla-extract/css": "1.15.3",
     "@vanilla-extract/sprinkles": "1.6.2",
     "camelcase-keys": "9.1.3",

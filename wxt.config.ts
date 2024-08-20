@@ -13,7 +13,9 @@ export default defineConfig({
   vite: () => {
     return {
       envDir,
-      build: { target: ['es2022', 'edge89', 'firefox89', 'chrome89', 'safari15'] },
+      build: {
+        target: ['es2022', 'edge89', 'firefox89', 'chrome89', 'safari15'],
+      },
       plugins: [tsconfigPaths(), vanillaExtractPlugin()],
     };
   },
@@ -22,6 +24,7 @@ export default defineConfig({
   publicDir,
   modules: ['@wxt-dev/module-react'],
   manifest: {
+    host_permissions: ['http://*/*', 'https://*/*'],
     permissions: ['storage'],
   },
 });

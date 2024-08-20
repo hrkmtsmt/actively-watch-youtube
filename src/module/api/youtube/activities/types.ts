@@ -19,6 +19,6 @@ export interface GetResponse {
       upload: {
         videoId: string;
       };
-    }[];
+    };
   }[];
 }
