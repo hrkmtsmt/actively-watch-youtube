@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Horizontal, Vertical } from '@components/layout';
 import { Card, IconButton, Input } from '@components/ui';
 import { Check, Plus, X } from 'react-feather';
@@ -6,9 +6,13 @@ import { useChannelsStore } from '@module/storage';
 import { api } from '@module/api';
 
 export const Favorite: React.FC = () => {
-  const { add, channels } = useChannelsStore();
+  const { initialize, add, channels } = useChannelsStore();
   const [isShowAddField, setIsShowAddField] = useState<boolean>(false);
   const [channel, setChannel] = useState<string>('');
+
+  useEffect(() => {
+    initialize();
+  }, [initialize]);
 
   return (
     <Vertical>

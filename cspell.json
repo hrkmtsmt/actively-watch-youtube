@@ -13,6 +13,7 @@
     "zustand",
     "immer",
     "unlocalized",
-    "contenteditable"
+    "contenteditable",
+    "comparer"
   ]
 }

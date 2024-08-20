@@ -7,6 +7,9 @@ settings:
 importers:
   .:
     dependencies:
+      '@antfu/utils':
+        specifier: ^0.7.10
+        version: 0.7.10
       '@vanilla-extract/css':
         specifier: 1.15.3
         version: 1.15.3
@@ -148,6 +151,10 @@ packages:
     resolution:
       { integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw== }
     engines: { node: '>=6.0.0' }
+
+  '@antfu/utils@0.7.10':
+    resolution:
+      { integrity: sha512-+562v9k4aI80m1+VuMHehNJWLOFjBnXn3tdOitzD0il5b7smkSBal4+a3oKiQTbrwMmN/TBUMDvbdoWDehgOww== }
 
   '@babel/code-frame@7.24.7':
     resolution:
@@ -5355,6 +5362,8 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
+
+  '@antfu/utils@0.7.10': {}
 
   '@babel/code-frame@7.24.7':
     dependencies:

@@ -5,8 +5,12 @@ import { Horizontal, Vertical } from '@components/layout';
 import { useSettingStore } from '@module/storage';
 
 export const Setting: React.FC = () => {
-  const { mode, current, change, start, save, cancel } = useSettingStore();
+  const { initialize, mode, current, change, start, save, cancel } = useSettingStore();
   const type = useMemo(() => (mode === 'none' ? 'password' : 'text'), [mode]);
+
+  useEffect(() => {
+    initialize();
+  }, [initialize]);
 
   return (
     <Vertical>
