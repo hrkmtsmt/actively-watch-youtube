@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { produce } from 'immer';
-import { StorageManager } from '../storage-manager';
+import { LocalStorageManager } from '../local-storage-manager';
 
 export interface Setting {
   apiKey: string;
@@ -20,7 +20,7 @@ interface Store {
 const initialState: Setting = { apiKey: '' };
 
 export const useSettingStore = create<Store>()((set) => {
-  const storage = new StorageManager('setting');
+  const storage = new LocalStorageManager('setting');
   return {
     mode: 'none',
     current: initialState,

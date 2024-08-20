@@ -65,6 +65,7 @@
     "husky": "8.0.3",
     "jsdom": "22.1.0",
     "lint-staged": "15.2.5",
+    "msw": "^2.3.5",
     "prettier": "3.3.0",
     "ts-node": "10.9.1",
     "typescript": "5.4.5",

@@ -6,7 +6,7 @@ class ExternalSystemError extends Error {
   constructor(error?: unknown) {
     super();
     this.name = 'EXTERNAL_SYSTEM_ERROR';
-    this.message = '外部システムとの連携に失敗しました';
+    this.message = 'External system error.';
     this.body = error;
     console.error(this.body);
   }
@@ -22,7 +22,7 @@ class InternalSystemError extends Error {
   constructor(error?: unknown) {
     super();
     this.name = 'INTERNAL_SYSTEM_ERROR';
-    this.message = 'システムエラーが発生しました';
+    this.message = 'Internal system error.';
     this.body = error;
     console.error(this.body);
   }
@@ -91,17 +91,25 @@ const fetcher = async <T, U>(url: string, method: HttpMethods, body?: U, headers
   }
 };
 
-const generateURL = (baseURL: string) => (path: string) => `${baseURL}${path}`;
+export class Client {
+  private BASE_URL: string;
 
-export const createClient = (baseURL: string, headers?: Headers) => {
-  const toURL = generateURL(baseURL);
+  private headers?: Headers;
 
-  return {
-    get: async <T>(path: string): Promise<T> => {
-      return fetcher(toURL(path), HTTP_METHODS.get, undefined, headers);
-    },
-    post: async <T, U>(path: string, body?: U): Promise<T> => {
-      return fetcher(toURL(path), HTTP_METHODS.post, body, headers);
-    },
-  };
-};
+  constructor(baseURL: string, headers?: Headers) {
+    this.BASE_URL = baseURL;
+    this.headers = headers;
+  }
+
+  private toURL(path: string) {
+    return `${this.BASE_URL}${path}`;
+  }
+
+  public async get<T>(path: string): Promise<T> {
+    return fetcher(this.toURL(path), HTTP_METHODS.get, undefined, this.headers);
+  }
+
+  public async post<T, U>(path: string, body?: U): Promise<T> {
+    return fetcher(this.toURL(path), HTTP_METHODS.post, body, this.headers);
+  }
+}

@@ -14,6 +14,10 @@
     "immer",
     "unlocalized",
     "contenteditable",
-    "comparer"
+    "comparer",
+    "aklo",
+    "Cnumber",
+    "Cboolean",
+    "Ctempura"
   ]
 }
