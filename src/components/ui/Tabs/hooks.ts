@@ -5,24 +5,24 @@ export interface Tab {
   name: string;
 }
 
-export const useTabs = (tabs: Tab[]) => {
+export const useTabs = <T extends Tab[]>(tabs: T) => {
   const [selectedTabId, setSelectedTab] = useState(tabs.at(0)?.id);
 
   const isSelected = useCallback(
-    (tabId: Tab['id']) => {
+    <P extends T[number]['id']>(tabId: P) => {
       return selectedTabId === tabId;
     },
     [selectedTabId]
   );
 
   const tabIndex = useCallback(
-    (tabId: Tab['id']) => {
+    <P extends T[number]['id']>(tabId: P) => {
       return isSelected(tabId) ? 0 : -1;
     },
     [isSelected]
   );
 
-  const handleClickTab = useCallback((tabId: Tab['id']) => {
+  const handleClickTab = useCallback(<P extends T[number]['id']>(tabId: P) => {
     setSelectedTab(tabId);
   }, []);
 

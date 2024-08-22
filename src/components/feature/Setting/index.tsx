@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
 import { Edit3, Save, X } from 'react-feather';
-import { Clipboard, IconButton, Input, Label } from '@components/ui';
+import { Clipboard, IconButton, Input, Label, useClipboard } from '@components/ui';
 import { Horizontal, Vertical } from '@components/layout';
 import { useSettingStore } from '@module/storage';
 
 export const Setting: React.FC = () => {
   const { initialize, mode, current, change, start, save, cancel } = useSettingStore();
+  const { isSuccess, handleClick } = useClipboard();
   const type = useMemo(() => (mode === 'none' ? 'password' : 'text'), [mode]);
 
   useEffect(() => {
@@ -14,7 +15,7 @@ export const Setting: React.FC = () => {
 
   return (
     <Vertical>
-      <Clipboard label="Origin" value={window.location.origin} />
+      <Clipboard label="Origin" value={window.location.origin} isSuccess={isSuccess} onClick={handleClick} />
       <Label label="API Key">
         <Input
           type={type}

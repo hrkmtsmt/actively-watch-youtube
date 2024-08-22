@@ -18,7 +18,7 @@ const handlers: RequestHandler[] = [
     return HttpResponse.json({ message: 'Not Found.' }, { status: 404 });
   }),
   http.post(`${BASE_URL}/books`, () => {
-    return HttpResponse.text('Register book.', { status: 404 });
+    return HttpResponse.text('Register book.', { status: 200 });
   }),
 ];
 

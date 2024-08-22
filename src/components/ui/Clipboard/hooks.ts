@@ -1,3 +1,5 @@
+import { useState, useCallback } from 'react';
+
 export const useClipboard = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -9,3 +11,5 @@ export const useClipboard = () => {
 
   return { isSuccess, handleClick };
 };
+
+export type UseClipboard = ReturnType<typeof useClipboard>;

@@ -8,7 +8,7 @@ importers:
   .:
     dependencies:
       '@antfu/utils':
-        specifier: ^0.7.10
+        specifier: 0.7.10
         version: 0.7.10
       '@vanilla-extract/css':
         specifier: 1.15.3
@@ -47,6 +47,9 @@ importers:
       '@rollup/plugin-typescript':
         specifier: 11.1.6
         version: 11.1.6(rollup@4.20.0)(tslib@2.6.3)(typescript@5.4.5)
+      '@testing-library/dom':
+        specifier: 10.4.0
+        version: 10.4.0
       '@testing-library/react':
         specifier: 14.1.0
         version: 14.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -114,7 +117,7 @@ importers:
         specifier: 15.2.5
         version: 15.2.5
       msw:
-        specifier: ^2.3.5
+        specifier: 2.3.5
         version: 2.3.5(typescript@5.4.5)
       prettier:
         specifier: 3.3.0
@@ -1180,6 +1183,11 @@ packages:
     resolution:
       { integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw== }
     engines: { node: '>=14.16' }
+
+  '@testing-library/dom@10.4.0':
+    resolution:
+      { integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ== }
+    engines: { node: '>=18' }
 
   '@testing-library/dom@9.3.4':
     resolution:
@@ -6223,6 +6231,17 @@ snapshots:
   '@szmarczak/http-timer@5.0.1':
     dependencies:
       defer-to-connect: 2.0.1
+
+  '@testing-library/dom@10.4.0':
+    dependencies:
+      '@babel/code-frame': 7.24.7
+      '@babel/runtime': 7.25.0
+      '@types/aria-query': 5.0.4
+      aria-query: 5.3.0
+      chalk: 4.1.2
+      dom-accessibility-api: 0.5.16
+      lz-string: 1.5.0
+      pretty-format: 27.5.1
 
   '@testing-library/dom@9.3.4':
     dependencies:
