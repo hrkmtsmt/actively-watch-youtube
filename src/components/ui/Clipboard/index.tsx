@@ -8,8 +8,8 @@ import { UseClipboard } from './hooks';
 interface ClipboardProps {
   label: LabelProps['label'];
   value: string;
-  isSuccess: UseClipboard['isSuccess'];
-  onClick: UseClipboard['handleClick'];
+  isSuccess?: UseClipboard['isSuccess'];
+  onClick?: UseClipboard['handleClick'];
 }
 
 export const Clipboard: React.FC<ClipboardProps> = (props) => {
@@ -25,7 +25,7 @@ export const Clipboard: React.FC<ClipboardProps> = (props) => {
               <Copy className={className} />
             )
           }
-          onClick={() => props.onClick(props.value)}
+          onClick={() => props.onClick?.(props.value)}
         />
       </Horizontal>
     </Label>

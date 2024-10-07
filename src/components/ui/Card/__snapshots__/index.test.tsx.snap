@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button component > snapshot 1`] = `
+<a
+  class="style_wrapper__seat0h0"
+  href="https://example.com"
+  title="The Pragmatic Programmer"
+>
+  <img
+    alt="The Pragmatic Programmer"
+    class="style_image__seat0h1"
+    height="256"
+    src="https://example.com/image"
+    width="256"
+  />
+  <div
+    class="style_body__seat0h2"
+  >
+    <h3
+      class="style_title__seat0h3"
+    >
+      The Pragmatic Programmer
+    </h3>
+  </div>
+</a>
+`;

@@ -25,6 +25,6 @@
       "*": [".wxt/types/*.d.ts"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "vitest-setup.js"],
   "exclude": ["./vite.config.ts"]
 }

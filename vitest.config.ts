@@ -1,4 +1,6 @@
 import { defineConfig } from 'vitest/config';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   test: {
@@ -6,4 +8,5 @@ export default defineConfig({
     environment: 'jsdom',
     exclude: ['node_modules/**/*'],
   },
+  plugins: [tsconfigPaths(), vanillaExtractPlugin()],
 });
