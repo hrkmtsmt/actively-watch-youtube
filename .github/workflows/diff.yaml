@@ -1,0 +1,36 @@
+name: Diff Checker
+
+on: [pull_request]
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GH_REPO: ${{ github.repository }}
+  PR_NUMBER: 0
+  PR_VIEW_JSON: ''
+  PR_CHANGED_FILES: 0
+  PR_ADDITIONS: 0
+  PR_DELETIONS: 0
+  PR_DIFF: 0
+  PR_DIFF_THRESHOLD: 400
+
+jobs:
+  setup:
+    if: contains(github.event.pull_request.labels.*.name, 'ignore diff') == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set PR number
+        run: echo "PR_NUMBER=${{ github.event.number }}" >> $GITHUB_ENV
+      - name: Get PR info
+        run: echo "PR_VIEW_JSON=$(gh pr view $PR_NUMBER --json changedFiles,additions,deletions)" >> $GITHUB_ENV
+      - name: Set values
+        run: |
+          echo "PR_CHANGED_FILES=$(echo $PR_VIEW_JSON | jq -r '.changedFiles')" >> $GITHUB_ENV
+          echo "PR_ADDITIONS=$(echo $PR_VIEW_JSON | jq -r '.additions')" >> $GITHUB_ENV
+          echo "PR_DELETIONS=$(echo $PR_VIEW_JSON | jq -r '.deletions')" >> $GITHUB_ENV
+      - name: Calc diff
+        run: echo "PR_DIFF=$(($PR_ADDITIONS + $PR_DELETIONS))" >> $GITHUB_ENV
+      - name: Diff is over
+        if: ${{ env.PR_DIFF }} > ${{ env.PR_DIFF_THRESHOLD }}
+        run: |
+          echo "::error::This PR is too big! Please keep it under $PR_DIFF_THRESHOLD changes."
+          exit 1
