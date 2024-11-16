@@ -4,9 +4,6 @@ import { act } from 'react';
 import { useClipboard } from './hooks';
 
 class ClipboardFaker {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor, @typescript-eslint/no-empty-function
-  constructor() {}
-
   private value = '';
 
   public async writeText(value: string) {

@@ -1,5 +1,5 @@
 {
-  "ignorePaths": ["node_modules/**", "dist/**", "./pnpm-lock.yaml", "**/*.snap"],
+  "ignorePaths": ["node_modules/**", "dist/**", "./pnpm-lock.yaml", "**/*.snap", "./biome.json"],
   "words": [
     "vite",
     "vitest",

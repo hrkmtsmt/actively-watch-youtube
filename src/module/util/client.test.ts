@@ -7,7 +7,7 @@ const BASE_URL = 'https://example.com/api' as const;
 
 const handlers: RequestHandler[] = [
   http.post(`${BASE_URL}/users`, async ({ request }) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     const body = (await request.json()) as any;
     return HttpResponse.json({ id: 2, ...body }, { status: 201 });
   }),

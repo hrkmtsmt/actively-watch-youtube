@@ -1,4 +1,4 @@
 export default defineBackground(() => {
-  // eslint-disable-next-line no-console
+  // biome-ignore lint/suspicious/noConsole: <explanation>
   console.log('Hello background!', { id: browser.runtime.id });
 });
