@@ -1,3 +1,3 @@
 export * from './channels';
 export * from './setting';
-export * from './storage-manager';
+export * from './local-storage-manager';

@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button component > snapshot 1`] = `
+<button
+  class="style_button__zqucfs0"
+  type="button"
+>
+  Snapshot
+</button>
+`;

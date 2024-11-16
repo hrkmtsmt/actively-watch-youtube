@@ -1,10 +1,10 @@
-import { StorageManager } from '@module/storage';
+import { LocalStorageManager } from '@module/storage';
 import { api } from '@module/api';
 
 export default defineContentScript({
   matches: ['https://www.google.com/*', 'https://www.youtube.com/*'],
   async main() {
-    const channels = await new StorageManager('channels').get();
+    const channels = await new LocalStorageManager('channels').get();
 
     if (!channels) {
       return;

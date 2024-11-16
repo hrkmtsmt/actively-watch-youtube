@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { produce } from 'immer';
-import { StorageManager } from '../storage-manager';
+import { LocalStorageManager } from '../local-storage-manager';
 import { Api } from '@module/api';
 
 export type Channels = Api.YouTube.Channels.GetResponse['items'];
@@ -13,7 +13,7 @@ interface Store {
 }
 
 export const useChannelsStore = create<Store>()((set) => {
-  const storage = new StorageManager('channels');
+  const storage = new LocalStorageManager('channels');
   return {
     channels: [],
     initialize: async () => {

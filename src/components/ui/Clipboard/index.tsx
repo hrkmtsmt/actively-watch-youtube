@@ -1,29 +1,35 @@
 import React from 'react';
 import { Copy, Check } from 'react-feather';
+import { vars } from '@styles/global.css';
 import { Horizontal } from '@components/layout';
 import { IconButton, Input, Label, LabelProps } from '@components/ui';
-import { useClipboard } from './hooks';
-import { vars } from '@styles/global.css';
+import { UseClipboard } from './hooks';
 
 interface ClipboardProps {
   label: LabelProps['label'];
   value: string;
+  isSuccess?: UseClipboard['isSuccess'];
+  onClick?: UseClipboard['handleClick'];
 }
 
 export const Clipboard: React.FC<ClipboardProps> = (props) => {
-  const { isSuccess, handleClick } = useClipboard();
-
   return (
     <Label label={props.label}>
       <Horizontal>
         <Input disabled value={props.value} />
         <IconButton
           icon={(className) =>
-            isSuccess ? <Check className={className} color={vars.colors.success} /> : <Copy className={className} />
+            props.isSuccess ? (
+              <Check className={className} color={vars.colors.success} />
+            ) : (
+              <Copy className={className} />
+            )
           }
-          onClick={() => handleClick(props.value)}
+          onClick={() => props.onClick?.(props.value)}
         />
       </Horizontal>
     </Label>
   );
 };
+
+export * from './hooks';

@@ -1,15 +1,16 @@
-export interface QueryParam {
-  key: string;
-  value: string | string[];
-}
+export type QueryParams = Record<string, string | string[]>;
 
-const toStringFromArray = (array: string[]) => array.join(',');
+type ToQueryString = (queryParams: QueryParams) => string;
 
-export const toQueryString = (queryParams: QueryParam[]) => {
+export const toQueryString: ToQueryString = (queryParams) => {
   const searchParams = new URLSearchParams();
-  queryParams.forEach(({ key, value }) =>
-    searchParams.set(key, Array.isArray(value) ? toStringFromArray(value) : value)
-  );
+  Object.entries(queryParams).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      searchParams.set(`${key}[]`, value.join(','));
+    } else {
+      searchParams.set(key, value);
+    }
+  });
 
   return searchParams.toString();
 };
